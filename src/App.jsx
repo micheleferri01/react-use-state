@@ -42,8 +42,8 @@ export default function App() {
   return (
     <>
       <Header />
-      <Buttons languagesList={languages} selectedLanguage={selectedLanguage} onSetSelectedLanguage={setSelectedLanguage}/>
-        <Card languagesList={languages} selectedCard={selectedLanguage} />
-  </>
-)
+      <Buttons languagesList={languages} selectedLanguage={selectedLanguage} onSetSelectedLanguage={setSelectedLanguage} />
+      <Card languagesList={languages} selectedCard={selectedLanguage} />
+    </>
+  )
 }
