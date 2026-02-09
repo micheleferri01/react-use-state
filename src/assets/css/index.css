@@ -12,3 +12,9 @@ header{
 header > h1 {
   font-size: 60px;
 }
+
+.my-card{
+  border: 1px solid grey;
+  border-radius: 0.4rem;
+  padding: 10px;
+}
