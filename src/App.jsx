@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Header from './assets/components/Header'
 
-function App() {
+export default function App() {
+  const [selectedLanguage, setSelectedLanguage] = useState('');
   const languages = [
     {
       id: 1,
@@ -34,17 +35,40 @@ function App() {
       description: "ReactJS è una libreria JavaScript per costruire interfacce utente, in particolare applicazioni a pagina singola. Consente agli sviluppatori di creare componenti UI riutilizzabili e di gestire efficacemente lo stato dell'applicazione."
     }
   ];
-  return (
+
+  const handleCardContent = (selectedId, array) => {
+    const currentLanguage = array.find((language) => (language.id === selectedId ));
+    console.log(currentLanguage);
+    const cardContent = currentLanguage? (
+      <>
+        <h2>{currentLanguage.title}</h2>
+        <p>{currentLanguage.description}</p>
+      </>
+    ):(
     <>
-     <Header/>
-     <div className='container my-5'>
-     {
-      languages.map((language)=> <button key={language.id} className='btn btn-primary me-3 fs-5'>{language.title}</button>)
-     }
-
-     </div>
+      <h2>Nessun linguaggio selezonato</h2>
     </>
-  )
-}
+  );
 
-export default App
+  return cardContent
+}
+return (
+  <>
+    <Header />
+    <div className='container my-5'>
+      {
+        languages.map((language) => <button key={language.id} className='btn btn-primary me-3 fs-5' onClick={() => setSelectedLanguage(language.id)}>{language.title}</button>)
+      }
+    </div>
+    <div className='container'>
+      <div className='my-card'>
+        {
+          handleCardContent(selectedLanguage, languages)
+        }
+
+      </div>
+
+    </div>
+  </>
+)
+}
