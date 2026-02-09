@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from './assets/components/Header'
+import Card from './assets/components/Card'
 
 export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -36,38 +37,19 @@ export default function App() {
     }
   ];
 
-  const handleCardContent = (selectedId, array) => {
-    const currentLanguage = array.find((language) => (language.id === selectedId ));
-    console.log(currentLanguage);
-    const cardContent = currentLanguage? (
-      <>
-        <h2>{currentLanguage.title}</h2>
-        <p>{currentLanguage.description}</p>
-      </>
-    ):(
-    <>
-      <h2>Nessun linguaggio selezonato</h2>
-    </>
-  );
-
-  return cardContent
-}
+ 
 return (
   <>
     <Header />
     <div className='container my-5'>
       {
-        languages.map((language) => <button key={language.id} className='btn btn-primary me-3 fs-5' onClick={() => setSelectedLanguage(language.id)}>{language.title}</button>)
+        languages.map((language) => <button key={language.id} className='btn btn-primary me-3 fs-5' id={language.id} onClick={(e) =>{
+          return setSelectedLanguage(language.id)
+        }  }>{language.title}</button>)
       }
     </div>
     <div className='container'>
-      <div className='my-card'>
-        {
-          handleCardContent(selectedLanguage, languages)
-        }
-
-      </div>
-
+      <Card languagesList={languages} selectedCard={selectedLanguage}/>
     </div>
   </>
 )
