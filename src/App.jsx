@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './assets/components/Header'
 import Card from './assets/components/Card'
+import Buttons from './assets/components/Buttons'
 
 export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
@@ -41,16 +42,8 @@ export default function App() {
   return (
     <>
       <Header />
-      <div className='container my-5'>
-        {
-          languages.map((language) => <button key={language.id} className={`btn me-3 fs-5 ${language.id === selectedLanguage? 'btn-warning' : 'btn-primary'}`} id={language.id} onClick={() => {
-            return setSelectedLanguage(language.id)
-          }}>{language.title}</button>)
-      }
-    </div >
-      <div className='container'>
+      <Buttons languagesList={languages} selectedLanguage={selectedLanguage} onSetSelectedLanguage={setSelectedLanguage}/>
         <Card languagesList={languages} selectedCard={selectedLanguage} />
-      </div>
   </>
 )
 }
